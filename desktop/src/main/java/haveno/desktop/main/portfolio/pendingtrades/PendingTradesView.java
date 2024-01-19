@@ -196,7 +196,7 @@ public class PendingTradesView extends ActivatableViewAndModel<VBox, PendingTrad
 
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tableView.setPlaceholder(new AutoTooltipLabel(Res.get("table.placeholder.noItems", Res.get("shared.openTrades"))));
-        tableView.setMinHeight(100);
+        tableView.setMinHeight(10);
 
         tradeIdColumn.setComparator(Comparator.comparing(o -> o.getTrade().getId()));
         dateColumn.setComparator(Comparator.comparing(o -> o.getTrade().getDate()));
@@ -235,6 +235,7 @@ public class PendingTradesView extends ActivatableViewAndModel<VBox, PendingTrad
                             log.warn("Unable to get offerPayload - {}", e.toString());
                         }
                     });
+                    row.setMinHeight(10);
                     rowMenu.getItems().add(duplicateItem);
                     row.contextMenuProperty().bind(
                             Bindings.when(Bindings.isNotNull(row.itemProperty()))
@@ -296,7 +297,7 @@ public class PendingTradesView extends ActivatableViewAndModel<VBox, PendingTrad
                     selectedSubView = model.dataModel.tradeManager.isBuyer(model.dataModel.getOffer()) ?
                             new BuyerSubView(model) : new SellerSubView(model);
 
-                    selectedSubView.setMinHeight(460);
+                    selectedSubView.setMinHeight(0);
                     VBox.setVgrow(selectedSubView, Priority.ALWAYS);
                     if (root.getChildren().size() == 2)
                         root.getChildren().add(selectedSubView);

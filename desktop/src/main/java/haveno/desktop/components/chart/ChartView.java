@@ -345,7 +345,7 @@ public abstract class ChartView<T extends ChartViewModel<? extends ChartDataMode
         LineChart<Number, Number> chart = new LineChart<>(xAxis, yAxis);
         chart.setAnimated(false);
         chart.setLegendVisible(false);
-        chart.setMinHeight(200);
+        chart.setMinHeight(0);
         chart.setId("charts-dao");
         return chart;
     }
@@ -360,7 +360,7 @@ public abstract class ChartView<T extends ChartViewModel<? extends ChartDataMode
         hBox.setSpacing(10);
         collection.forEach(series -> {
             AutoTooltipSlideToggleButton toggle = new AutoTooltipSlideToggleButton();
-            toggle.setMinWidth(200);
+            toggle.setMinWidth(0);
             toggle.setAlignment(Pos.TOP_LEFT);
             String seriesId = getSeriesId(series);
             legendToggleBySeriesName.put(seriesId, toggle);
@@ -401,7 +401,7 @@ public abstract class ChartView<T extends ChartViewModel<? extends ChartDataMode
         Pane right = new Pane();
         timelineNavigation = new SplitPane(left, center, right);
         timelineNavigation.setDividerPositions(model.getDividerPositions()[0], model.getDividerPositions()[1]);
-        timelineNavigation.setMinHeight(25);
+        timelineNavigation.setMinHeight(0);
         timelineLabels = new HBox();
     }
 
@@ -420,7 +420,7 @@ public abstract class ChartView<T extends ChartViewModel<? extends ChartDataMode
                 xValueString = String.valueOf(xValue);
             }
             Label label = new Label(xValueString);
-            label.setMinHeight(30);
+            label.setMinHeight(0);
             label.setId("chart-navigation-label");
             Region spacer = new Region();
             HBox.setHgrow(spacer, Priority.ALWAYS);

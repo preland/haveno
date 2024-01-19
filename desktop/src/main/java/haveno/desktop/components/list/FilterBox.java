@@ -41,7 +41,8 @@ public class FilterBox extends HBox {
         HBox.setMargin(label, new Insets(5.0, 0, 0, 10.0));
 
         textField = new InputTextField();
-        textField.setMinWidth(500);
+        textField.setMinWidth(0);
+        textField.setMinHeight(0);
 
         getChildren().addAll(label, textField);
     }

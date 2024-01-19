@@ -20,8 +20,8 @@ package haveno.desktop.util;
 public class Layout {
     public static final double INITIAL_WINDOW_WIDTH = 1200;
     public static final double INITIAL_WINDOW_HEIGHT = 710; //740
-    public static final double MIN_WINDOW_WIDTH = 1020;
-    public static final double MIN_WINDOW_HEIGHT = 620;
+    public static final double MIN_WINDOW_WIDTH = 640;//1020
+    public static final double MIN_WINDOW_HEIGHT = 480;//620
     public static final double FIRST_ROW_DISTANCE = 20d;
     public static final double COMPACT_FIRST_ROW_DISTANCE = 10d;
     public static final double TWICE_FIRST_ROW_DISTANCE = 20d * 2;

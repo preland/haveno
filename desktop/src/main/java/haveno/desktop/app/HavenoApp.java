@@ -52,6 +52,7 @@ import haveno.desktop.common.view.View;
 import haveno.desktop.common.view.ViewLoader;
 import haveno.desktop.main.MainView;
 import haveno.desktop.main.debug.DebugView;
+import haveno.desktop.DynamicSizeListener;
 import haveno.desktop.main.overlays.popups.Popup;
 import haveno.desktop.main.overlays.windows.FilterWindow;
 import haveno.desktop.main.overlays.windows.SendAlertMessageWindow;
@@ -71,6 +72,7 @@ import javafx.geometry.BoundingBox;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -82,6 +84,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
+
 
 @Slf4j
 public class HavenoApp extends Application implements UncaughtExceptionHandler {
@@ -100,6 +103,10 @@ public class HavenoApp extends Application implements UncaughtExceptionHandler {
     private boolean shutDownRequested;
     private MainView mainView;
 
+    private static final double TARGET_WIDTH = 1080.0;
+    private static final double BASE_FONT_SIZE = 12.0;
+    private static final double SCALING_FACTOR = TARGET_WIDTH / BASE_FONT_SIZE;
+    
     public HavenoApp() {
         shutDownHandler = this::stop;
     }
@@ -203,6 +210,10 @@ public class HavenoApp extends Application implements UncaughtExceptionHandler {
             // Multi-screen environments may encounter IllegalArgumentException (Window must not be zero)
             // Just ignore the exception and continue, which means the window will use the minimum window size below
             // since we are unable to determine if we can use a larger size
+            // 
+            // TODO: if we end up making text size change based on screen size,
+            // allow the screen size to be set by the end user in some way
+            // (preland)
         }
         Scene scene = new Scene(mainView.getRoot(),
                 maxWindowBounds.getWidth() < INITIAL_WINDOW_WIDTH ?
@@ -221,6 +232,7 @@ public class HavenoApp extends Application implements UncaughtExceptionHandler {
         });
         CssTheme.loadSceneStyles(scene, preferences.getCssTheme(), config.useDevModeHeader);
 
+        scene.widthProperty().addListener(new DynamicSizeListener(scene));
         return scene;
     }
 

@@ -17,6 +17,7 @@
 
 package haveno.desktop.util;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 
 public class CssTheme {
@@ -32,6 +33,7 @@ public class CssTheme {
 
         currentCSSTheme = cssTheme;
         useDevHeader = devHeader;
+
 
         switch (cssTheme) {
 

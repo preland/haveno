@@ -13,9 +13,9 @@
 @font-face {
     src: url("/fonts/IBMPlexMono-Regular.ttf");
 }
-.root {
-    -fx-font-size: 13;
-}
+/*.root {
+    -fx-font-size: 12; <- was originally 13
+}*/
 
 .root:dir(ltr){
     -fx-font-family: "IBM Plex Sans";
@@ -66,12 +66,12 @@
 
 .headline-label {
     -fx-font-weight: bold;
-    -fx-font-size: 1.692em;
+    -fx-font-size: 0.167em;
 }
 
 .warning-box {
     -fx-background-color: -bs-yellow-light;
-    -fx-spacing: 6;
+    -fx-spacing: 0.5em;
     -fx-alignment: center;
 }
 
@@ -104,18 +104,18 @@
     -fx-background-color: transparent !important;
     -fx-font-size: 1.077em;
     -fx-font-family: "IBM Plex Mono";
-    -fx-padding: 0 !important;
+    -fx-padding: 0.0em !important;
 }
 
 /* Other UI Elements */
 .separator *.line {
     -fx-border-style: solid;
-    -fx-border-width: 0 0 1 0;
+    -fx-border-width: 0em 0em 0.083em 0em;
     -fx-border-color: -bs-rd-separator-dark;
 }
 
 .separator:vertical *.line {
-    -fx-border-width: 0 1 0 0;
+    -fx-border-width: 0em 0.083em 0em 0em;
 }
 
 .jfx-progress-bar > .bar,
@@ -133,7 +133,7 @@
 }
 
 .jfx-spinner {
-    -jfx-radius: 10;
+    -jfx-radius: 0.833em;
 }
 
 .jfx-spinner:indeterminate .arc,
@@ -150,10 +150,10 @@
     -fx-text-fill: -bs-rd-font-dark-gray;
     -fx-font-size: 0.923em;
     -fx-font-weight: normal;
-    -fx-background-radius: 2px;
-    -fx-pref-height: 32;
-    -fx-min-height: -fx-pref-height;
-    -fx-padding: 0 40 0 40;
+    -fx-background-radius: 0.15385em;
+    -fx-pref-height: 2.667em;
+    -fx-min-height: 0em;
+    -fx-padding: 0em 3.333em 0em 3.333em;
     -fx-effect: dropshadow(gaussian, -bs-text-color-transparent, 2, 0, 0, 0, 1);
     -fx-cursor: hand;
 }
@@ -172,23 +172,23 @@
 }
 
 .compact-button, .table-cell .jfx-button, .action-button.compact-button {
-    -fx-padding: 0 10 0 10;
+    -fx-padding: 0em 0.833em 0em 0.833em;
 }
 
 .tiny-button,
 .action-button.tiny-button {
     -fx-font-size: 0.769em;
-    -fx-pref-height: 20;
-    -fx-padding: 3 8 3 8;
-    -fx-border-radius: 5;
+    -fx-pref-height: 1.667em;
+    -fx-padding: 0.25em 0.667em 0.25em 0.667em;
+    -fx-border-radius: 0.417em;
 }
 
 .text-button {
     -fx-background-color: transparent;
     -fx-underline: true;
-    -fx-padding: 0 10 0 10;
-    -fx-pref-height: 28;
-    -fx-min-height: -fx-pref-height;
+    -fx-padding: 0em 0.833em 0em 0.833em;
+    -fx-pref-height: 2.333em;
+    -fx-min-height: 0em;
 }
 
 .text-button:hover {
@@ -206,15 +206,15 @@
 .jfx-check-box:indeterminate .box,
 .jfx-check-box:indeterminate:selected .box {
     -fx-border-radius: 0;
-    -fx-border-width: 1;
-    -fx-pref-width: 12;
-    -fx-pref-height: 12;
+    -fx-border-width: 0.083em;
+    -fx-pref-width: 1em;
+    -fx-pref-height: 1em;
 }
 
 .jfx-check-box .mark,
 .jfx-check-box .indeterminate-mark {
-    -fx-border-radius: 0;
-    -fx-border-width: 1;
+    -fx-border-radius: 0em;
+    -fx-border-width: 0.083em;
 }
 
 .jfx-combo-box {
@@ -275,11 +275,11 @@
 .tree-table-view:focused,
 .table-view:focused,
 tree-table-view:focused {
-    -fx-background-insets: 0;
+    -fx-background-insets: 0em;
 }
 .list-view:focused {
     -fx-background-color: -bs-color-primary;
-    -fx-background-insets: 0;
+    -fx-background-insets: 0em;
 }
 
 /* Selected rows */
@@ -289,7 +289,7 @@ tree-table-view:focused {
 .tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled:selected,
 .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell .table-cell:selected,
 .tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell .tree-table-cell:selected {
-    -fx-background-insets: 0;
+    -fx-background-insets: 0em;
 }
 
 /* Selected when control is not focused */
@@ -299,13 +299,13 @@ tree-table-view:focused {
 .tree-table-row-cell:filled:selected,
 .table-row-cell:filled > .table-cell:selected,
 .tree-table-row-cell:filled > .tree-table-cell:selected {
-    -fx-background-insets: 0;
+    -fx-background-insets: 0em;
 }
 
 .jfx-text-field {
     -jfx-focus-color: -bs-color-primary;
     -fx-background-color: -bs-background-color;
-    -fx-background-radius: 3 3 0 0;
+    -fx-background-radius: 0.25em 0.25em 0em 0em;
     -fx-padding: 0.333333em 0.333333em 0.333333em 0.333333em;
 }
 
@@ -336,12 +336,12 @@ tree-table-view:focused {
 
 .jfx-text-field:disabled > .input-line {
     -fx-background-color: transparent;
-    -fx-border-width: 0;
+    -fx-border-width: 0em;
 }
 
 .jfx-text-field:disabled > .input-focused-line {
     -fx-background-color: transparent;
-    -fx-border-width: 0;
+    -fx-border-width: 0em;
 }
 
 #info-field {
@@ -350,7 +350,7 @@ tree-table-view:focused {
 
 .jfx-password-field {
     -fx-background-color: -bs-background-color;
-    -fx-background-radius: 3 3 0 0;
+    -fx-background-radius: 0.25em 0.25em 0em 0em;
     -jfx-focus-color: -bs-color-primary;
     -fx-padding: 0.333333em 0.333333em 0.333333em 0.333333em;
 }
@@ -371,7 +371,7 @@ tree-table-view:focused {
 .jfx-text-field .error-label, .jfx-password-field .error-label, .jfx-text-area .error-label {
     -fx-text-fill: -bs-rd-error-red;
     -fx-font-size: 0.692em;
-    -fx-padding: -0.5em 0 0 0;
+    -fx-padding: -0.5em 0em 0em 0em;
 }
 
 .jfx-text-field .error-icon, .jfx-password-field .error-icon, .jfx-text-area .error-icon {
@@ -381,35 +381,35 @@ tree-table-view:focused {
 
 .input-with-border {
     -fx-background-color: -bs-background-color;
-    -fx-border-width: 1;
+    -fx-border-width: 0.083em;
     -fx-border-color: -bs-background-gray;
-    -fx-border-radius: 3;
-    -fx-pref-height: 43;
-    -fx-pref-width: 310;
-    -fx-effect: innershadow(gaussian, -bs-text-color-transparent, 3, 0, 0, 1);
+    -fx-border-radius: 0.25em;
+    -fx-pref-height: 3.583em;
+    -fx-pref-width: 25.833em;
+    -fx-effect: innershadow(gaussian, -bs-text-color-transparent, 0.25em, 0em, 0em, 0.083em);
 }
 
 .input-with-border .text-field {
     -fx-alignment: center-right;
-    -fx-pref-height: 43;
+    -fx-pref-height: 3.583em;
     -fx-font-size: 1.385em;
 }
 
 .input-with-border > .input-label {
     -fx-font-size: 0.692em;
-    -fx-min-width: 60;
-    -fx-padding: 16;
+    -fx-min-width: 5em;
+    -fx-padding: 1.333em;
     -fx-alignment: center;
 }
 
 .input-with-border .icon {
-    -fx-padding: 10;
+    -fx-padding: 0.833em;
 }
 
 .input-with-border-readonly {
     -fx-background-color: -bs-color-gray-1;
-    -fx-border-width: 0;
-    -fx-pref-width: 300;
+    -fx-border-width: 0em;
+    -fx-pref-width: 25em;
 }
 
 .input-with-border-readonly .text-field {
@@ -424,30 +424,30 @@ tree-table-view:focused {
 
 .input-with-border-readonly > .input-label {
     -fx-font-size: 0.692em;
-    -fx-min-width: 30;
-    -fx-padding: 8;
+    -fx-min-width: 2.5em;
+    -fx-padding: 0.666em;
     -fx-alignment: center;
 }
 
 .input-with-border-readonly .icon {
-    -fx-padding: 2;
+    -fx-padding: 0.167em;
 }
 
 .jfx-badge .badge-pane {
     -fx-background-color: -bs-red;
-    -fx-background-radius: 15;
-    -fx-pref-width: 15;
-    -fx-pref-height: 15;
+    -fx-background-radius: 1.25em;
+    -fx-pref-width: 1.25em;
+    -fx-pref-height: 1.25em;
 }
 
 .jfx-badge.new .badge-pane {
-    -fx-pref-width: 30;
+    -fx-pref-width: 2.5em;
 }
 
 .jfx-badge.auto-conf .badge-pane {
     -fx-background-color: -xmr-orange;
-    -fx-pref-width: -1;
-    -fx-padding: -1 10 0 10;
+    -fx-pref-width: -0.083em;
+    -fx-padding: -0.083em 0.833em 0em 0.833em;
 }
 
 .jfx-badge .badge-pane .label {
@@ -457,7 +457,7 @@ tree-table-view:focused {
 }
 
 .jfx-badge {
-    -fx-padding: -3 0 0 0;
+    -fx-padding: -0.25em 0em 0em 0em;
 }
 
 .jfx-toggle-button,
@@ -495,7 +495,7 @@ tree-table-view:focused {
 
 .wallet-seed-words .content,
 .wallet-seed-words:focused .content {
-    -fx-padding: 12 12 0 12;
+    -fx-padding: 1em 1em 0em 1em;
 }
 
 .jfx-date-picker {
@@ -517,8 +517,8 @@ tree-table-view:focused {
 .jfx-date-picker > .arrow-button > .arrow {
     -fx-shape: "M320 384h128v128h-128zM512 384h128v128h-128zM704 384h128v128h-128zM128 768h128v128h-128zM320 768h128v128h-128zM512 768h128v128h-128zM320 576h128v128h-128zM512 576h128v128h-128zM704 576h128v128h-128zM128 576h128v128h-128zM832 0v64h-128v-64h-448v64h-128v-64h-128v1024h960v-1024h-128zM896 960h-832v-704h832v704z";
     -fx-background-color: -jfx-default-color;
-    -fx-background-insets: 0;
-    -fx-padding: 10;
+    -fx-background-insets: 0em;
+    -fx-padding: 0.833em;
 }
 
 .jfx-date-picker > .arrow-button > .jfx-svg-glyph {
@@ -531,33 +531,33 @@ tree-table-view:focused {
 
 .scroll-bar {
     -fx-background-color: -bs-background-color;
-    -fx-background-radius: 0;
+    -fx-background-radius: 0em;
 }
 
 .scroll-bar:horizontal .track,
 .scroll-bar:vertical .track {
     -fx-background-color: -bs-background-color;
     -fx-border-color: -bs-background-color;
-    -fx-background-radius: 0;
+    -fx-background-radius: 0em;
 }
 
 .scroll-bar:vertical .track-background,
 .scroll-bar:horizontal .track-background {
     -fx-background-color: -bs-background-color;
-    -fx-background-insets: 0;
-    -fx-background-radius: 0;
+    -fx-background-insets: 0em;
+    -fx-background-radius: 0em;
 }
 
 .scroll-bar:horizontal .thumb {
     -fx-background-color: -bs-color-gray-2;
-    -fx-background-insets: 2 0 2 0;
-    -fx-background-radius: 3;
+    -fx-background-insets: 0.167em 0em 0.167em 0em;
+    -fx-background-radius: 0.25em;
 }
 
 .scroll-bar:vertical .thumb {
     -fx-background-color: -bs-color-gray-2;
-    -fx-background-insets: 0 2 0 2;
-    -fx-background-radius: 3;
+    -fx-background-insets: 0em 0.167em 0em 0.167em;
+    -fx-background-radius: 0.25em;
 }
 
 .scroll-bar:horizontal .thumb:hover,
@@ -618,7 +618,7 @@ tree-table-view:focused {
 }
 
 .default-text {
-    -fx-font-size: 13;
+    -fx-font-size: 1.0em;
 }
 
 .bold-text,
@@ -658,57 +658,57 @@ tree-table-view:focused {
 /* Main navigation */
 .top-navigation {
     -fx-background-color: -bs-rd-nav-background;
-    -fx-border-width: 0 0 1 0;
+    -fx-border-width: 0em 0em 0.083em 0em;
     -fx-border-color: -bs-rd-nav-primary-border;
-    -fx-pref-height: 57;
-    -fx-padding: 0 11 0 0;
+    -fx-pref-height: 4.75em;
+    -fx-padding: 0em 0.917em 0em 0em;
 }
 
 .top-navigation .separator:vertical .line {
     -fx-border-color: transparent transparent transparent transparent;
-    -fx-border-width: 1;
-    -fx-border-insets: 0 0 0 1;
+    -fx-border-width: 0.083em;
+    -fx-border-insets: 0em 0em 0em 0.083em;
 }
 
 .nav-primary {
     -fx-background-color: -bs-rd-nav-primary-background;
-    -fx-padding: 0 11 0 11;
-    -fx-border-width: 0 1 0 0;
+    -fx-padding: 0em 0.917em 0em 0.917em;
+    -fx-border-width: 0em 0.083em 0em 0em;
     -fx-border-color: -bs-rd-nav-primary-border;
-    -fx-min-width: 410;
+    -fx-min-width: 0em; /*410*/
 }
 
 .nav-secondary {
-    -fx-padding: 0 11 0 11;
-    -fx-min-width: 296;
+    -fx-padding: 0em 0.917em 0em 0.917em;
+    -fx-min-width: 0em; /*296*/
 }
 
 .nav-price-balance {
     -fx-background-color: -bs-color-gray-background;
-    -fx-background-radius: 3;
+    -fx-background-radius: 0.25em;
     -fx-effect: innershadow(gaussian, -bs-text-color-transparent, 3, 0, 0, 1);
-    -fx-pref-height: 41;
-    -fx-padding: 0 10 0 0;
+    -fx-pref-height: 3.417em;
+    -fx-padding: 0 0.833em 0 0;
 }
 
 .nav-price-balance .separator:vertical .line {
     -fx-border-color: transparent transparent transparent -bs-rd-separator-dark;
-    -fx-border-width: 1;
-    -fx-border-insets: 0 0 0 1;
+    -fx-border-width: 0.083em;
+    -fx-border-insets: 0em 0em 0em 0.083em;
 }
 
 .nav-price-balance .jfx-combo-box > .input-line {
-    -fx-pref-height: 0px;
+    -fx-pref-height: 0.0em;
 }
 
 .jfx-badge > .nav-button {
-    -fx-translate-y: 1;
+    -fx-translate-y: 0.083em;
 }
 
 .nav-button {
     -fx-cursor: hand;
     -fx-background-color: transparent;
-    -fx-padding: 11;
+    -fx-padding: 0.917em;
 }
 
 .nav-button .text {
@@ -723,7 +723,7 @@ tree-table-view:focused {
 
 .nav-button:selected {
     -fx-background-color: -bs-background-color;
-    -fx-border-radius: 4;
+    -fx-border-radius: 0.333em;
     -fx-effect: dropshadow(gaussian, -bs-text-color-transparent, 4, 0, 0, 0, 2);
 }
 
@@ -767,7 +767,7 @@ tree-table-view:focused {
 .progress-indicator > .determinate-indicator > .indicator {
     -fx-background-color: -fx-control-inner-background;
     -fx-border-color: -fx-box-border;
-    -fx-border-width: 1;
+    -fx-border-width: 0.083em;
     -fx-padding: 0.166667em; /* 2px */
 }
 
@@ -782,7 +782,7 @@ tree-table-view:focused {
 
 .hidden-icon-button {
     -fx-background-color: transparent;
-    -fx-padding: 0;
+    -fx-padding: 0em;
     -fx-cursor: hand;
 }
 
@@ -825,18 +825,18 @@ tree-table-view:focused {
 
 .opaque-icon {
     -fx-fill: -bs-color-gray-bbb;
-    -fx-opacity: 1;
+    -fx-opacity: 0.083em;
 }
 
 .opaque-icon-character {
     -fx-font-size: 3em;
     -fx-text-fill: -bs-color-gray-bbb;
-    -fx-padding: 24 2 0 2;
+    -fx-padding: 2em 0.167em 0em 0.167em;
 }
 
 .opaque-icon-character.small {
     -fx-font-size: 1em;
-    -fx-padding: 27 2 0 2;
+    -fx-padding: 2.25em 0.167em 0em 0.167em;
 }
 
 .alert-icon {
@@ -873,8 +873,8 @@ tree-table-view:focused {
     -fx-background: -bs-background-color;
     -fx-text-fill: -bs-text-color;
     -fx-background-color: -bs-background-color;
-    -fx-background-radius: 6px;
-    -fx-background-insets: 0;
+    -fx-background-radius: 0.5em;
+    -fx-background-insets: 0em;
     -fx-padding: 0.667em 0.75em 0.667em 0.75em; /* 10px */
     -fx-effect: dropshadow(three-pass-box, -bs-text-color-transparent, 10, 0, 0, 3);
     -fx-font-size: 0.85em;
@@ -884,20 +884,20 @@ tree-table-view:focused {
 textfield */
 #label-with-background {
     -fx-background-color: -bs-color-gray-fafa;
-    -fx-border-radius: 4;
-    -fx-padding: 4 4 4 4;
+    -fx-border-radius: 0.333em;
+    -fx-padding: 0.333em 0.333em 0.333em 0.333em;
 }
 
 #funds-confidence {
     -fx-progress-color: -bs-color-gray-dim;
-    -fx-max-width: 20;
-    -fx-max-height: 20;
+    -fx-max-width: 1.667em;
+    -fx-max-height: 1.667em;
 }
 
 #xmr-confidence {
     -fx-progress-color: -xmr-orange;
-    -fx-max-width: 20;
-    -fx-max-height: 20;
+    -fx-max-width: 1.667em;
+    -fx-max-height: 1.667em;
 }
 
 .hyperlink,
@@ -907,7 +907,7 @@ textfield */
 .hyperlink:hover:visited,
 .hyperlink:focused {
     -fx-border-style: none;
-    -fx-border-width: 0px;
+    -fx-border-width: 0em;
     -fx-underline: true;
     -fx-text-fill: -bs-rd-font-dark;
     -fx-fill: -bs-rd-font-dark;
@@ -963,7 +963,7 @@ textfield */
 }
 .table-row-cell:empty, .table-row-cell:empty:even, .table-row-cell:empty:odd {
     -fx-background-color: -bs-background-color;
-    -fx-min-height: 36;
+    -fx-min-height: 3em;
 }
 .offer-table .table-row-cell {
     -fx-background: -fx-accent;
@@ -972,22 +972,22 @@ textfield */
 
 .table-view .table-cell {
     -fx-alignment: center-left;
-    -fx-padding: 2 0 2 0;
+    -fx-padding: 0.167em 0em 0.167em 0em;
     /*-fx-padding: 3 0 2 0;*/
 }
 
 .table-view .table-cell.last-column {
     -fx-alignment: center-right;
-    -fx-padding: 2 10 2 0;
+    -fx-padding: 0.167em 0.833em 0.167em 0em;
 }
 
 .table-view .table-cell.last-column.avatar-column {
     -fx-alignment: center;
-    -fx-padding: 2 0 2 0;
+    -fx-padding: 0.167em 0em 0.167em 0em;
 }
 
 .table-view .column-header.last-column {
-    -fx-padding: 0 10 0 0;
+    -fx-padding: 0em 0.833em 0em 0em;
 }
 
 .table-view .column-header.last-column .label {
@@ -995,7 +995,7 @@ textfield */
 }
 
 .table-view .column-header.last-column.avatar-column {
-    -fx-padding: 0;
+    -fx-padding: 0em;
 }
 
 .table-view .column-header.last-column.avatar-column .label {
@@ -1003,16 +1003,16 @@ textfield */
 }
 
 .table-view .table-cell.first-column {
-    -fx-padding: 2 0 2 10;
+    -fx-padding: 0.167em 0em 0.167em 0.833em;
 }
 
 .table-view .column-header.first-column {
-    -fx-padding: 0 0 0 10;
+    -fx-padding: 0em 0em 0em 0.833em;
 }
 
 .number-column.table-cell {
     -fx-font-size: 1em;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 0em 0em 0em 0em;
 }
 
 .table-view .filler {
@@ -1027,12 +1027,12 @@ textfield */
     -fx-alignment: center-left;
     -fx-font-weight: normal;
     -fx-font-size: 0.923em;
-    -fx-padding: 0;
+    -fx-padding: 0em;
 }
 
 .table-view .column-header {
     -fx-background-color: -bs-color-gray-0;
-    -fx-padding: 0;
+    -fx-padding: 0em;
 }
 
 .table-view .focus {
@@ -1044,19 +1044,20 @@ textfield */
 }
 
 /* horizontal scrollbars are never needed and are flickering at scaling so lets turn them off */
+/*preland: i may look at this later if i have time */
 .table-view > .scroll-bar:horizontal {
     -fx-opacity: 0;
 }
 
 .table-view:focused {
     -fx-background-color: -fx-box-border, -fx-control-inner-background;
-    -fx-background-insets: 0, 1;
-    -fx-padding: 1;
+    -fx-background-insets: 0em, 0.083em;
+    -fx-padding: 0.083em;
 }
 
 .table-view:focused .table-row-cell:focused {
     -fx-background-color: -fx-table-cell-border-color, -fx-background;
-    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-insets: 0em, 0em 0em 0.083em 0em;
 }
 
 .offer-table .table-row-cell {
@@ -1065,18 +1066,18 @@ textfield */
 }
 
 .table-row-cell {
-    -fx-border-width: 0 0 1 0;
+    -fx-border-width: 0em 0em 0.083em 0em;
     -fx-border-color: -bs-color-gray-0;
     -fx-table-cell-border-color: -bs-background-color;
 }
 
 .table-row-cell:selected {
-    -fx-border-width: 0 0 1 0;
+    -fx-border-width: 0em 0em 0.083em 0em;
     -fx-table-cell-border-color: transparent;
 }
 
 .table-row-cell:empty {
-    -fx-border-width: 0;
+    -fx-border-width: 0em;
     -fx-background-color: -bs-background-color;
     -fx-table-cell-border-color: transparent;
 }
@@ -1105,20 +1106,20 @@ textfield */
 .table-view .table-row-cell:selected .hyperlink .text {
     -fx-fill: -bs-text-color;
     -fx-border-style: none;
-    -fx-border-width: 0px;
+    -fx-border-width: 0em;
 }
 
 .table-view .table-row-cell .hyperlink .text {
     -fx-fill: -bs-rd-font-dark;
     -fx-border-style: none;
-    -fx-border-width: 0px;
+    -fx-border-width: 0em;
 }
 
 .table-view .table-row-cell .hyperlink .text:hover,
 .table-view .table-row-cell:selected .hyperlink .text:hover {
     -fx-fill: -bs-text-color;
     -fx-border-style: none;
-    -fx-border-width: 0px;
+    -fx-border-width: 0em;
 }
 
 .table-view .table-row-cell .hyperlink:hover,
@@ -1126,16 +1127,16 @@ textfield */
 .table-view .table-row-cell .hyperlink:hover:visited {
     -fx-underline: false;
     -fx-border-style: none;
-    -fx-border-width: 0px;
+    -fx-border-width: 0em;
 }
 
 .table-view .table-row-cell .hyperlink:focused {
     -fx-border-style: none;
-    -fx-border-width: 0px;
+    -fx-border-width: 0em;
 }
 
 .table-view.large-rows .table-row-cell {
-    -fx-cell-size: 47px;
+    -fx-cell-size: 3.917em;
 }
 
 /*******************************************************************************
@@ -1207,17 +1208,17 @@ textfield */
  *                                                                             *
  ******************************************************************************/
 .jfx-tab-pane {
-    -fx-padding: 0;
+    -fx-padding: 0em;
     -jfx-disable-animation: true;
 }
 
 .jfx-tab-pane .headers-region .tab .tab-container .tab-close-button {
     -fx-background-color: transparent;
-    -fx-pref-width: 20;
-    -fx-pref-height: 20;
-    -fx-min-width: -fx-pref-width;
+    -fx-pref-width: 1.667em;
+    -fx-pref-height: 1.667em;
+    -fx-min-width: 0em;
     -fx-max-width: -fx-pref-width;
-    -fx-min-height: -fx-pref-height;
+    -fx-min-height: 0em;
     -fx-max-height: -fx-pref-height;
 }
 
@@ -1227,12 +1228,12 @@ textfield */
 
 .jfx-tab-pane .headers-region .tab .tab-container .tab-close-button > .jfx-svg-glyph {
     -fx-shape: "M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z";
-    -jfx-size: 9;
+    -jfx-size: 0.75em;
     -fx-background-color: -bs-rd-font-light;
 }
 
 .jfx-tab-pane .headers-region .tab .tab-container .tab-close-button {
-    -fx-padding: 0 0 2 0;
+    -fx-padding: 0em 0em 0.167em 0em;
 }
 
 .jfx-tab-pane .headers-region .tab:selected .tab-container .tab-close-button > .jfx-svg-glyph {
@@ -1241,18 +1242,18 @@ textfield */
 
 .jfx-tab-pane .tab-header-background {
     -fx-background-color: -bs-color-gray-background;
-    -fx-border-width: 0 0 1 0;
+    -fx-border-width: 0em 0em 0.083em 0em;
     -fx-border-color: -bs-rd-tab-border;
 }
 
 .jfx-tab-pane .headers-region .tab-selected-line {
     -fx-background-color: -fx-accent;
-    -fx-pref-height: 1;
+    -fx-pref-height: 0.083em;
 }
 
 .jfx-tab-pane .headers-region .tab .tab-container .tab-label {
     -fx-text-fill: -bs-rd-font-light;
-    -fx-padding: 14;
+    -fx-padding: 1.167em;
     -fx-font-size: 0.769em;
     -fx-font-weight: normal;
 }
@@ -1271,14 +1272,14 @@ textfield */
 
 .jfx-tab-pane .headers-region .tab:closable {
     -fx-border-color: transparent;
-    -fx-border-width: 0;
+    -fx-border-width: 0em;
     -fx-border-style: none;
-    -fx-border-insets: 0;
-    -fx-padding: 9;
+    -fx-border-insets: 0em;
+    -fx-padding: 0.75em;
 }
 
 .jfx-tab-pane .headers-region .tab:closable .tab-container .tab-label {
-    -fx-padding: 5;
+    -fx-padding: 0.417em;
 }
 
 #form-header-text {
@@ -1292,16 +1293,16 @@ textfield */
 
 /* scroll-pane */
 .scroll-pane {
-    -fx-background-insets: 0;
-    -fx-padding: 0;
+    -fx-background-insets: 0em;
+    -fx-padding: 0em;
 }
 
 .scroll-pane:focused {
-    -fx-background-insets: 0;
+    -fx-background-insets: 0em;
 }
 
 .scroll-pane .corner {
-    -fx-background-insets: 0;
+    -fx-background-insets: 0em;
 }
 
 /* validation */
@@ -1314,8 +1315,8 @@ textfield */
     -fx-background-color: -bs-color-gray-2,
     linear-gradient(-bs-color-gray-2 0%, -bs-color-gray-3 100%),
     linear-gradient(-bs-color-gray-2 0%, -bs-background-gray 100%);
-    -fx-background-insets: 0 0 0 0, 0, 1;
-}
+    -fx-background-insets: 0em 0em 0em 0em, 0em, 0.083em;
+} 
 
 #info-icon-label {
     -fx-font-size: 1.231em;
@@ -1342,27 +1343,27 @@ textfield */
 #create-offer-calc-label {
     -fx-font-weight: bold;
     -fx-font-size: 1.538em;
-    -fx-padding: 15 5 0 5;
+    -fx-padding: 1.25em 0.417em 0em 0.417em;
 }
 
 #toggle-price-left {
-    -fx-border-radius: 4 0 0 4;
-    -fx-padding: 4 4 4 4;
+    -fx-border-radius: 0.333em 0 0 0.333em;
+    -fx-padding: 0.333em 0.333em 0.333em 0.333em;
     -fx-border-color: -bs-color-gray-4;
     -fx-border-style: solid none solid solid;
-    -fx-border-insets: 0 -2 0 0;
-    -fx-background-insets: 0 -2 0 0;
-    -fx-background-radius: 4 0 0 4;
+    -fx-border-insets: 0em -0.167em 0em 0em;
+    -fx-background-insets: 0em -0.167em 0em 0em;
+    -fx-background-radius: 0.333em 0em 0em 0.333em;
 }
 
 #toggle-price-right {
-    -fx-border-radius: 0 4 4 0;
-    -fx-padding: 4 4 4 4;
+    -fx-border-radius: 0em 0.333em 0.333em 0em;
+    -fx-padding: 0.333em 0.333em 0.333em 0.333em;
     -fx-border-color: -bs-color-gray-4;
     -fx-border-style: solid solid solid none;
-    -fx-border-insets: 0 0 0 -2;
-    -fx-background-insets: 0 0 0 -2;
-    -fx-background-radius: 0 4 4 0;
+    -fx-border-insets: 0em 0em 0em -0.167em;
+    -fx-background-insets: 0em 0em 0em -0.167em;
+    -fx-background-radius: 0em 0.333em 0.333em 0em;
 }
 
 #totals-separator {
@@ -1400,7 +1401,7 @@ textfield */
 
 .combo-box-editor-bold {
     -fx-font-weight: bold;
-    -fx-padding: 5 8 5 8 !important;
+    -fx-padding: 0.417em 0.667em 0.417em 0.667em !important;
     -fx-text-fill: -bs-text-color;
     -fx-font-family: "IBM Plex Sans Medium";
 }
@@ -1409,8 +1410,8 @@ textfield */
     -fx-font-size: 0.692em;
     -fx-text-fill: -bs-rd-font-lighter;
     -fx-alignment: center;
-    -fx-pref-height: 35px;
-    -fx-pref-width: 45px;
+    -fx-pref-height: 2.917em;
+    -fx-pref-width: 3.75em;
 }
 
 .offer-label-small {
@@ -1428,7 +1429,7 @@ textfield */
     -fx-font-size: 1.077em;
     -fx-text-fill: -bs-rd-font-dark-gray;
     -fx-alignment: center-left;
-    -fx-pref-height: 35px;
+    -fx-pref-height: 2.917em;
 }
 
 /* Offer */
@@ -1464,8 +1465,8 @@ textfield */
     -fx-outer-border,
     -fx-inner-border,
     -fx-body-color;
-    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
-    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-background-insets: 0em 0em -0.083em 0em, 0em, 0.083em, 0.167em;
+    -fx-background-radius: 0.25em, 0.25em, 0.167em, 0.083em;
 }
 
 #wizard-item-background-active {
@@ -1475,8 +1476,8 @@ textfield */
     -fx-outer-border,
     -fx-inner-border,
     -fx-body-color;
-    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
-    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-background-insets: 0em 0em -0.083em 0em, 0em, 0.083em, 0.167em;
+    -fx-background-radius: 0.25em, 0.25em, 0.167em, 0.083em;
 }
 
 #wizard-item-background-completed {
@@ -1486,8 +1487,8 @@ textfield */
     -fx-outer-border,
     -fx-inner-border,
     -fx-body-color;
-    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
-    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-background-insets: 0em 0em -0.083em 0em, 0em, 0.083em, 0.167em;
+    -fx-background-radius: 0.25em, 0.25em, 0.167em, 0.083em;
 }
 
 /* Account settings */
@@ -1498,8 +1499,8 @@ textfield */
     -fx-outer-border,
     -fx-inner-border,
     -fx-body-color;
-    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
-    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-background-insets: 0em 0em -0.083em 0em, 0em, 0.083em, 0.167em;
+    -fx-background-radius: 0.25em, 0.25em, 0.167em, 0.083em;
 }
 
 #account-settings-item-background-active {
@@ -1509,8 +1510,8 @@ textfield */
     -fx-outer-border,
     -fx-inner-border,
     -fx-body-color;
-    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
-    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-background-insets: 0em 0em -0.083em 0em, 0em, 0.083em, 0.167em;
+    -fx-background-radius: 0.25em, 0.25em, 0.167em, 0.083em;
 }
 
 #account-settings-item-background-selected {
@@ -1520,8 +1521,8 @@ textfield */
     -fx-outer-border,
     -fx-inner-border,
     -fx-body-color;
-    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
-    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-background-insets: 0em 0em -0.083em 0em, 0em, 0.083em, 0.167em;
+    -fx-background-radius: 0.25em, 0.25em, 0.167em, 0.083em;
 }
 
 /* Pending trades */
@@ -1594,20 +1595,20 @@ textfield */
 .titled-group-bg, .titled-group-bg-active {
     -fx-body-color: -bs-color-gray-background;
     -fx-border-color: -bs-rd-separator;
-    -fx-border-width: 0 0 1 0;
+    -fx-border-width: 0em 0em 0.083em 0em;
     -fx-background-color: transparent;
-    -fx-background-insets: 0;
+    -fx-background-insets: 0em;
 }
 
 .titled-group-bg.last, .titled-group-bg-active.last {
-    -fx-border-width: 0;
+    -fx-border-width: 0em;
 }
 
 /* TableGroupHeadline */
 #table-group-headline {
     -fx-background-color: -bs-content-background-gray;
-    -fx-background-insets: 10 0 -1 0, 0, 1, 2;
-    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-background-insets: 0.833em 0em -0.083em 0em, 0em, 0.083em, 0.167em;
+    -fx-background-radius: 0.25em, 0.25em, 0.167em, 0.083em;
 }
 
 /* copied form modena.css text-input */
@@ -1617,9 +1618,9 @@ textfield */
     -fx-highlight-text-fill: -fx-text-inner-color;
     -fx-prompt-text-fill: derive(-bs-prompt-text, -30%);
     -fx-background-color: linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
-    linear-gradient(from 0px 0px to 0px 5px, derive(-fx-control-inner-background, -9%), -fx-control-inner-background);
-    -fx-background-insets: 0, 1;
-    -fx-background-radius: 3, 2;
+    linear-gradient(from 0em 0em to 0em 0.417em, derive(-fx-control-inner-background, -9%), -fx-control-inner-background);
+    -fx-background-insets: 0em, 0.083em;
+    -fx-background-radius: 0.25em, 0.167em;
     -fx-padding: 0.333333em 0.583em 0.333333em 0.583em; /* 4 7 4 7 */
 }
 
@@ -1629,9 +1630,9 @@ textfield */
     -fx-highlight-text-fill: -fx-text-inner-color;
     -fx-prompt-text-fill: derive(-bs-prompt-text, -30%);
     -fx-background-color: linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
-    linear-gradient(from 0px 0px to 0px 5px, derive(-fx-control-inner-background, -9%), -bs-color-gray-1);
-    -fx-background-insets: 0, 1;
-    -fx-background-radius: 3, 2;
+    linear-gradient(from 0em 0em to 0em 0.417em, derive(-fx-control-inner-background, -9%), -bs-color-gray-1);
+    -fx-background-insets: 0em, 0.083em;
+    -fx-background-radius: 0.25em, 0.167em;
     -fx-padding: 0.333333em 0.583em 0.333333em 0.583em; /* 4 7 4 7 */
 }
 
@@ -1662,30 +1663,30 @@ textfield */
 
 #message-list-view.list-view {
     -fx-background-color: -fx-box-border, -fx-control-inner-background;
-    -fx-background-insets: 0, 1;
-    -fx-padding: 1;
+    -fx-background-insets: 0em, 0.083em;
+    -fx-padding: 0.083em;
 }
 
 #message-list-view.list-view:focused {
     -fx-background-color: -fx-box-border, -fx-control-inner-background;
-    -fx-background-insets: 0, 1;
-    -fx-padding: 1;
+    -fx-background-insets: 0em, 0.083em;
+    -fx-padding: 0.083em;
 }
 
 /* bubble */
 #message-bubble-green {
     -fx-background-color: -bs-color-primary;
-    -fx-background-radius: 10 10 10 10;
+    -fx-background-radius: 0.833em  0.833em 0.833em 0.833em;
 }
 
 #message-bubble-blue {
     -fx-background-color: -bs-rd-message-bubble;
-    -fx-background-radius: 10 10 10 10;
+    -fx-background-radius: 0.833em  0.833em 0.833em 0.833em;
 }
 
 #message-bubble-grey {
     -fx-background-color: -bs-color-gray-3;
-    -fx-background-radius: 10 10 10 10;
+    -fx-background-radius: 0.833em  0.833em 0.833em 0.833em;
 }
 
 .attachment-icon {
@@ -1705,10 +1706,10 @@ textfield */
  ******************************************************************************/
 .grid-pane {
     -fx-background-color: -bs-content-background-gray;
-    -fx-background-radius: 5;
+    -fx-background-radius: 0.417em;
     -fx-effect: null;
-    -fx-effect: dropshadow(gaussian, -bs-color-gray-10, 10, 0, 0, 0);
-    -fx-background-insets: 10;
+    -fx-effect: dropshadow(gaussian, -bs-color-gray-10, 0.833em, 0em, 0em, 0em);
+    -fx-background-insets: 0.833em;
 }
 
 /********************************************************************************************************************
@@ -1879,7 +1880,7 @@ textfield */
 }
 
 #charts-dao .chart-series-line {
-    -fx-stroke-width: 2px;
+    -fx-stroke-width: 0.167em;
 }
 
 #charts .default-color0.chart-series-area-fill {
@@ -1992,18 +1993,18 @@ textfield */
     -fx-font-size: 1.077em;
     -fx-text-fill: -bs-rd-font-dark;
     -fx-background-color: -bs-background-color;
-    -fx-background-radius: 0;
-    -fx-background-insets: 44;
-    -fx-effect: dropshadow(gaussian, -bs-text-color-transparent-dark, 44, 0, 0, 0);
+    -fx-background-radius: 0em;
+    -fx-background-insets: 3.667em;
+    -fx-effect: dropshadow(gaussian, -bs-text-color-transparent-dark, 3.667em, 0em, 0em, 0em);
 }
 
 .popup-bg-top {
     -fx-font-size: 1.077em;
     -fx-text-fill: -bs-rd-font-dark;
     -fx-background-color: -bs-background-color;
-    -fx-background-radius: 0;
-    -fx-background-insets: 44;
-    -fx-effect: dropshadow(gaussian, -bs-text-color-transparent-dark, 44, 0, 0, 0);
+    -fx-background-radius: 0em;
+    -fx-background-insets: 3.667em;
+    -fx-effect: dropshadow(gaussian, -bs-text-color-transparent-dark, 3.667em, 0em, 0em, 0em);
 }
 
 .notification-popup-headline, peer-info-popup-headline {
@@ -2014,14 +2015,14 @@ textfield */
 
 .notification-popup-bg {
     -fx-font-size: 0.846em;
-    -fx-background-insets: 44;
-    -fx-effect: dropshadow(gaussian, -bs-text-color-transparent-dark, 44, 0, -1, 3);
+    -fx-background-insets: 3.667em;
+    -fx-effect: dropshadow(gaussian, -bs-text-color-transparent-dark, 3.667em, 0em, -0.083em, 0.25em);
 }
 
 .peer-info-popup-bg {
     -fx-font-size: 0.846em;
-    -fx-background-insets: 44;
-    -fx-effect: dropshadow(gaussian, -bs-text-color-transparent-dark, 44, 0, -1, 3);
+    -fx-background-insets: 3.667em;
+    -fx-effect: dropshadow(gaussian, -bs-text-color-transparent-dark, 3.667em, 0em, -0.083em, 0.25em);
 }
 
 .account-status-title {
@@ -2064,25 +2065,25 @@ textfield */
 }
 
 #toggle-left {
-    -fx-border-radius: 4 0 0 4;
+    -fx-border-radius: 0.333em 0em 0em 0.333em;
     -fx-border-color: -bs-rd-separator-dark;
     -fx-border-style: solid;
-    -fx-border-width: 0 1 0 0;
-    -fx-background-radius: 4 0 0 4;
+    -fx-border-width: 0em 0.083em 0em 0em;
+    -fx-background-radius: 0.333em 0em 0em 0.333em;
     -fx-background-color: -bs-background-color;
-    -fx-effect: dropshadow(gaussian, -bs-text-color-transparent, 4, 0, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, -bs-text-color-transparent, 0.333em, 0em, 0em, 0em, 0.167em);
 }
 
 #toggle-center {
-    -fx-border-radius: 0;
+    -fx-border-radius: 0em;
     -fx-border-color: -bs-rd-separator-dark;
     -fx-border-style: solid;
-    -fx-border-width: 0 1 0 0;
-    -fx-border-insets: 0;
-    -fx-background-insets: 0;
-    -fx-background-radius: 0;
+    -fx-border-width: 0em 0.083em 0em 0em;
+    -fx-border-insets: 0em;
+    -fx-background-insets: 0em;
+    -fx-background-radius: 0em;
     -fx-background-color: -bs-background-color;
-    -fx-effect: dropshadow(gaussian, -bs-text-color-transparent, 4, 0, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, -bs-text-color-transparent, 0.333em, 0em, 0em, 0em, 0.167em);
 }
 
 #toggle-center:selected, #toggle-left:selected, #toggle-right:selected {
@@ -2091,11 +2092,11 @@ textfield */
 }
 
 #toggle-right {
-    -fx-border-radius: 0 4 4 0;
-    -fx-border-width: 0;
-    -fx-background-radius: 0 4 4 0;
+    -fx-border-radius: 0em 0.333em 0.333em 0em;
+    -fx-border-width: 0em;
+    -fx-background-radius: 0em 0.333em 0.333em 0em;
     -fx-background-color: -bs-background-color;
-    -fx-effect: dropshadow(gaussian, -bs-text-color-transparent, 4, 0, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, -bs-text-color-transparent, 0.333em, 0em, 0em, 0em, 0.167em);
 }
 
 #toggle-left:hover, #toggle-right:hover, #toggle-center:hover {
@@ -2218,7 +2219,7 @@ textfield */
 }
 
 .compensation-root {
-    -fx-background-insets: 0, 0 0 0 0;
+    -fx-background-insets: 0em, 0em 0em 0em 0em;
 }
 
 .info-icon {
@@ -2232,12 +2233,12 @@ textfield */
 
 .price-trend-up {
     -fx-text-fill: -bs-color-primary;
-    -fx-padding: 2 0 0 0;
+    -fx-padding: 0.167em 0em 0em 0em;
 }
 
 .price-trend-down {
     -fx-text-fill: -bs-red;
-    -fx-padding: 2 0 0 0;
+    -fx-padding: 0.167em 0em 0em 0em;
 }
 
 /********************************************************************************************************************
@@ -2264,7 +2265,7 @@ textfield */
 
 .news-feature-image {
     -fx-border-style: solid;
-    -fx-border-width: 1;
+    -fx-border-width: 0.083em;
     -fx-border-color: -bs-rd-separator-dark;
 }
 /********************************************************************************************************************
@@ -2287,7 +2288,7 @@ textfield */
  *                                                                                                                  *
  ********************************************************************************************************************/
 .popover > .content {
-    -fx-padding: 10;
+    -fx-padding: 0.833em;
 }
 
 .popover > .content .default-text {

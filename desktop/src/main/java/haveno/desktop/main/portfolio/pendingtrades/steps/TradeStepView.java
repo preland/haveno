@@ -116,8 +116,8 @@ public abstract class TradeStepView extends AnchorPane {
         startCachingTxs();
 
         ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); //hmm
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
 
@@ -139,7 +139,7 @@ public abstract class TradeStepView extends AnchorPane {
         columnConstraints2.setHgrow(Priority.ALWAYS);
 
         gridPane.getColumnConstraints().addAll(columnConstraints1, columnConstraints2);
-
+        
         scrollPane.setContent(gridPane);
 
         AnchorPane.setLeftAnchor(this, 0d);
@@ -382,7 +382,7 @@ public abstract class TradeStepView extends AnchorPane {
                 1, Res.get("portfolio.pending.remainingTime"), "");
 
         timeLeftTextField = labelTextFieldVBoxTuple3.second;
-        timeLeftTextField.setMinWidth(400);
+        timeLeftTextField.setMinWidth(0);
 
         timeLeftProgressBar = new JFXProgressBar(0);
         timeLeftProgressBar.setOpacity(0.7);

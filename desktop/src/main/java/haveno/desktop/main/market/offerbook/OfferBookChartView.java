@@ -324,7 +324,8 @@ public class OfferBookChartView extends ActivatableViewAndModel<VBox, OfferBookC
         areaChart.setLegendVisible(false);
         areaChart.setAnimated(false);
         areaChart.setId("charts");
-        areaChart.setMinHeight(270);
+        areaChart.setMinHeight(0);
+        areaChart.setMinWidth(0);
         areaChart.setPrefHeight(270);
         areaChart.setCreateSymbols(true);
         areaChart.setPadding(new Insets(0, 10, 0, 10));
@@ -425,13 +426,13 @@ public class OfferBookChartView extends ActivatableViewAndModel<VBox, OfferBookC
         TableView<OfferListItem> tableView = new TableView<>();
         tableView.setMinHeight(initialOfferTableViewHeight);
         tableView.setPrefHeight(initialOfferTableViewHeight);
-        tableView.setMinWidth(480);
+        tableView.setMinWidth(0);
         tableView.getStyleClass().add("offer-table");
 
         // price
         TableColumn<OfferListItem, OfferListItem> priceColumn = new TableColumn<>();
         priceColumn.textProperty().bind(priceColumnLabel);
-        priceColumn.setMinWidth(115);
+        priceColumn.setMinWidth(0);
         priceColumn.setMaxWidth(115);
         priceColumn.setSortable(false);
         priceColumn.getStyleClass().add("number-column");
@@ -483,7 +484,7 @@ public class OfferBookChartView extends ActivatableViewAndModel<VBox, OfferBookC
 
         // volume
         TableColumn<OfferListItem, OfferListItem> volumeColumn = new TableColumn<>();
-        volumeColumn.setMinWidth(115);
+        volumeColumn.setMinWidth(0);
         volumeColumn.setSortable(false);
         volumeColumn.textProperty().bind(volumeColumnLabel);
         volumeColumn.getStyleClass().addAll("number-column", "first-column");
@@ -544,7 +545,7 @@ public class OfferBookChartView extends ActivatableViewAndModel<VBox, OfferBookC
 
         // amount
         TableColumn<OfferListItem, OfferListItem> amountColumn = new AutoTooltipTableColumn<>(Res.get("shared.XMRMinMax"));
-        amountColumn.setMinWidth(115);
+        amountColumn.setMinWidth(0);
         amountColumn.setSortable(false);
         amountColumn.getStyleClass().add("number-column");
         amountColumn.setCellValueFactory((offer) -> new ReadOnlyObjectWrapper<>(offer.getValue()));
@@ -573,7 +574,7 @@ public class OfferBookChartView extends ActivatableViewAndModel<VBox, OfferBookC
         TableColumn<OfferListItem, OfferListItem> avatarColumn = new AutoTooltipTableColumn<>(isSellOffer ?
                 Res.get("shared.sellerUpperCase") : Res.get("shared.buyerUpperCase")) {
             {
-                setMinWidth(80);
+                setMinWidth(0);
                 setMaxWidth(80);
                 setSortable(true);
             }
@@ -637,7 +638,7 @@ public class OfferBookChartView extends ActivatableViewAndModel<VBox, OfferBookC
         button.setGraphic(iconView);
         button.setGraphicTextGap(10);
         button.updateText(isSellOffer ? Res.get("market.offerBook.buy") : Res.get("market.offerBook.sell"));
-        button.setMinHeight(32);
+        button.setMinHeight(0);
         button.setId(isSellOffer ? "buy-button-big" : "sell-button-big");
         button.setOnAction(e -> model.goToOfferView(direction));
 
@@ -652,7 +653,8 @@ public class OfferBookChartView extends ActivatableViewAndModel<VBox, OfferBookC
         vBox.setPadding(new Insets(0, 0, 0, 0));
         vBox.setSpacing(10);
         vBox.setFillWidth(true);
-        vBox.setMinHeight(190);
+        vBox.setMinHeight(0);
+        vBox.setMinWidth(0);
         vBox.getChildren().addAll(titleButtonBox, tableView);
 
         return new Tuple4<>(tableView, vBox, button, titleLabel);

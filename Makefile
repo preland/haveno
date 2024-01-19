@@ -74,7 +74,7 @@ monerod1-local:
 		--no-zmq \
 		--add-exclusive-node 127.0.0.1:28080 \
 		--rpc-access-control-origins http://localhost:8080 \
-		--fixed-difficulty  500
+		--fixed-difficulty  1
 
 monerod2-local:
 	./.localnet/monerod \
@@ -88,7 +88,7 @@ monerod2-local:
 		--confirm-external-bind \
 		--add-exclusive-node 127.0.0.1:48080 \
 		--rpc-access-control-origins http://localhost:8080 \
-		--fixed-difficulty  500
+		--fixed-difficulty  1
 
 funding-wallet-stagenet:
 	./.localnet/monero-wallet-rpc \
@@ -473,3 +473,13 @@ user3-desktop:
 		--appName=haveno-XMR_MAINNET_user3 \
 		--apiPassword=apitest \
 		--apiPort=1203
+preland-debug:
+	./haveno-desktop$(APP_EXT) \
+		--baseCurrencyNetwork=XMR_FAKENET \ #todo: change to custom debug one
+		--useLocalhostForP2P=false \
+		--useDevPrivilegeKeys=false \
+		--nodePort=1199 \
+		--appName=haveno-preland-debug \
+		--apiPassword=apitest \
+		--apiPort=1299 #todo: ensure these are actually unique ports
+
