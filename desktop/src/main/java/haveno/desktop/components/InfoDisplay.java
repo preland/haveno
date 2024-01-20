@@ -20,6 +20,7 @@ package haveno.desktop.components;
 import de.jensd.fx.fontawesome.AwesomeIcon;
 import haveno.common.UserThread;
 import haveno.core.locale.Res;
+import haveno.desktop.DynamicSizeListener;
 import haveno.desktop.util.FormBuilder;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -60,6 +61,7 @@ public class InfoDisplay extends Parent {
     private final Label label;
     private final Hyperlink link;
 
+    private DynamicSizeListener ds = new DynamicSizeListener();
 
     ///////////////////////////////////////////////////////////////////////////////////////////
     // Constructor
@@ -70,7 +72,7 @@ public class InfoDisplay extends Parent {
         icon.visibleProperty().bind(visibleProperty());
 
         GridPane.setValignment(icon, VPos.TOP);
-        GridPane.setMargin(icon, new Insets(-2, 0, 0, 0));
+        GridPane.setMargin(icon, ds.ScaledInsets(-2, 0, 0, 0));
         GridPane.setRowSpan(icon, 2);
 
         label = new AutoTooltipLabel();
@@ -80,7 +82,7 @@ public class InfoDisplay extends Parent {
         label.setVisible(false);
 
         link = new Hyperlink(Res.get("shared.readMore"));
-        link.setPadding(new Insets(0, 0, 0, -2));
+        link.setPadding(ds.ScaledInsets(0, 0, 0, -2));
 
         // We need that to know if we have a wrapping or not.
         // Did not find a way to get that from the API.

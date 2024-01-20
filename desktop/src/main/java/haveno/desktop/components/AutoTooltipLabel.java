@@ -23,7 +23,10 @@ import javafx.scene.control.skin.LabelSkin;
 
 import static haveno.desktop.components.TooltipUtil.showTooltipIfTruncated;
 
+import haveno.desktop.DynamicSizeListener;
 public class AutoTooltipLabel extends Label {
+    
+    private DynamicSizeListener ds = new DynamicSizeListener();
 
     public AutoTooltipLabel() {
         super();
@@ -46,7 +49,7 @@ public class AutoTooltipLabel extends Label {
 
         @Override
         protected void layoutChildren(double x, double y, double w, double h) {
-            super.layoutChildren(x, y, w, h);
+            super.layoutChildren(ds.scaled(x), ds.scaled(y), ds.scaled(w), ds.scaled(h));
             showTooltipIfTruncated(this, getSkinnable());
         }
     }

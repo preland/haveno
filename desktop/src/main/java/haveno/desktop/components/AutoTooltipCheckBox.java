@@ -23,7 +23,11 @@ import javafx.scene.control.Skin;
 
 import static haveno.desktop.components.TooltipUtil.showTooltipIfTruncated;
 
+import haveno.desktop.DynamicSizeListener;
+
 public class AutoTooltipCheckBox extends JFXCheckBox {
+
+    private DynamicSizeListener ds = new DynamicSizeListener();
 
     public AutoTooltipCheckBox() {
         super();
@@ -46,7 +50,7 @@ public class AutoTooltipCheckBox extends JFXCheckBox {
 
         @Override
         protected void layoutChildren(double x, double y, double w, double h) {
-            super.layoutChildren(x, y, w, h);
+            super.layoutChildren(ds.scaled(x), ds.scaled(y), ds.scaled(w), ds.scaled(h));
             showTooltipIfTruncated(this, getSkinnable());
         }
     }

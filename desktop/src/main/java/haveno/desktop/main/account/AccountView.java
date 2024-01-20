@@ -20,6 +20,7 @@ package haveno.desktop.main.account;
 import haveno.common.util.Utilities;
 import haveno.core.locale.Res;
 import haveno.core.user.DontShowAgainLookup;
+import haveno.desktop.DynamicSizeListener;
 import haveno.desktop.Navigation;
 import haveno.desktop.common.view.ActivatableView;
 import haveno.desktop.common.view.CachingViewLoader;
@@ -75,6 +76,7 @@ public class AccountView extends ActivatableView<TabPane, Void> {
     private Scene scene;
     private EventHandler<KeyEvent> keyEventEventHandler;
     private ListChangeListener<Tab> tabListChangeListener;
+    private DynamicSizeListener ds = new DynamicSizeListener();
 
     @Inject
     private AccountView(CachingViewLoader viewLoader, Navigation navigation) {
@@ -84,7 +86,7 @@ public class AccountView extends ActivatableView<TabPane, Void> {
 
     @Override
     public void initialize() {
-
+        root.setPrefSize(ds.scaled(1000), ds.scaled(630));
         root.setTabClosingPolicy(TabPane.TabClosingPolicy.ALL_TABS);
 
         traditionalAccountsTab.setText(Res.get("account.menu.paymentAccount").toUpperCase());

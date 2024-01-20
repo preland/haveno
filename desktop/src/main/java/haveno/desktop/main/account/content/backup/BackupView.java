@@ -24,6 +24,7 @@ import haveno.common.util.Tuple2;
 import haveno.common.util.Utilities;
 import haveno.core.locale.Res;
 import haveno.core.user.Preferences;
+import haveno.desktop.DynamicSizeListener;
 import haveno.desktop.common.view.ActivatableView;
 import haveno.desktop.common.view.FxmlView;
 import haveno.desktop.main.overlays.popups.Popup;
@@ -31,6 +32,7 @@ import haveno.desktop.util.Layout;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.GridPane;
 import javafx.stage.DirectoryChooser;
 
@@ -57,7 +59,7 @@ public class BackupView extends ActivatableView<GridPane, Void> {
     private Button openDataDirButton, openLogsButton;
     private ChangeListener<Boolean> backUpLocationTextFieldFocusListener;
 
-
+    private DynamicSizeListener ds = new DynamicSizeListener();
     ///////////////////////////////////////////////////////////////////////////////////////////
     // Constructor, lifecycle
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -73,6 +75,9 @@ public class BackupView extends ActivatableView<GridPane, Void> {
 
     @Override
     public void initialize() {
+        root.setVgap(ds.scaled(5));
+        root.setHgap(ds.scaled(5));
+        root.setPadding(ds.ScaledInsets(15, 15, 15, 15));
         addTitledGroupBg(root, gridRow, 2, Res.get("account.backup.title"));
         backUpLocationTextField = addInputTextField(root, gridRow, Res.get("account.backup.location"), Layout.FIRST_ROW_DISTANCE);
         String backupDirectory = preferences.getBackupDirectory();

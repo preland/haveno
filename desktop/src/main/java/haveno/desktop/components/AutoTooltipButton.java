@@ -19,12 +19,16 @@ package haveno.desktop.components;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.skins.JFXButtonSkin;
+
+import haveno.desktop.DynamicSizeListener;
 import javafx.scene.Node;
 import javafx.scene.control.Skin;
 
 import static haveno.desktop.components.TooltipUtil.showTooltipIfTruncated;
 
 public class AutoTooltipButton extends JFXButton {
+
+    private DynamicSizeListener ds = new DynamicSizeListener();
 
     public AutoTooltipButton() {
         super();
@@ -54,7 +58,7 @@ public class AutoTooltipButton extends JFXButton {
 
         @Override
         protected void layoutChildren(double x, double y, double w, double h) {
-            super.layoutChildren(x, y, w, h);
+            super.layoutChildren(ds.scaled(x), ds.scaled(y), ds.scaled(w), ds.scaled(h));
             showTooltipIfTruncated(this, getSkinnable());
         }
     }

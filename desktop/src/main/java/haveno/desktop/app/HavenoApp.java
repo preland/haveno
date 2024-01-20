@@ -103,10 +103,7 @@ public class HavenoApp extends Application implements UncaughtExceptionHandler {
     private boolean shutDownRequested;
     private MainView mainView;
 
-    private static final double TARGET_WIDTH = 1080.0;
-    private static final double BASE_FONT_SIZE = 12.0;
-    private static final double SCALING_FACTOR = TARGET_WIDTH / BASE_FONT_SIZE;
-    
+    private final DynamicSizeListener ds = new DynamicSizeListener();
     public HavenoApp() {
         shutDownHandler = this::stop;
     }
@@ -168,7 +165,7 @@ public class HavenoApp extends Application implements UncaughtExceptionHandler {
         if (!shutDownRequested) {
             if (scene == null) {
                 log.warn("Scene not available yet, we create a new scene. The bug might be caused by an exception in a constructor or by a circular dependency in Guice. throwable=" + throwable.toString());
-                scene = new Scene(new StackPane(), 1000, 650);
+                scene = new Scene(new StackPane(), ds.scaled(1000), ds.scaled(650));
                 CssTheme.loadSceneStyles(scene, CssTheme.CSS_THEME_LIGHT, false);
                 stage.setScene(scene);
                 stage.show();
@@ -231,8 +228,8 @@ public class HavenoApp extends Application implements UncaughtExceptionHandler {
             CssTheme.loadSceneStyles(scene, preferences.getCssTheme(), config.useDevModeHeader);
         });
         CssTheme.loadSceneStyles(scene, preferences.getCssTheme(), config.useDevModeHeader);
-
-        scene.widthProperty().addListener(new DynamicSizeListener(scene));
+        ds.setScene(scene);
+        scene.widthProperty().addListener(ds);
         return scene;
     }
 
@@ -368,7 +365,7 @@ public class HavenoApp extends Application implements UncaughtExceptionHandler {
                         .closeButtonText(Res.get("shared.closeAnywayDanger"))
                         .onClose(() -> resp.complete(true))
                         .dontShowAgainId(key)
-                        .width(800)
+                        .width(ds.scaled(800))
                         .show();
                 return resp;
             }

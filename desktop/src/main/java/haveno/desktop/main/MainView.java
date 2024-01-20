@@ -41,6 +41,7 @@ import haveno.desktop.components.AutoTooltipButton;
 import haveno.desktop.components.AutoTooltipLabel;
 import haveno.desktop.components.AutoTooltipToggleButton;
 import haveno.desktop.components.BusyAnimation;
+import haveno.desktop.DynamicSizeListener;
 import haveno.desktop.main.account.AccountView;
 import haveno.desktop.main.funds.FundsView;
 import haveno.desktop.main.market.MarketView;
@@ -127,7 +128,9 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
     private Label xmrSplashInfo;
     private Popup p2PNetworkWarnMsgPopup, xmrNetworkWarnMsgPopup;
     private final TorNetworkSettingsWindow torNetworkSettingsWindow;
-
+    
+    private DynamicSizeListener ds = new DynamicSizeListener();
+    
     public static StackPane getRootContainer() {
         return MainView.rootContainer;
     }
@@ -206,6 +209,7 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
                     } else if (Utilities.isAltOrCtrlPressed(KeyCode.DIGIT8, keyEvent)) {
                         accountButton.fire();
                     }
+
                 });
             }
         });
@@ -226,7 +230,7 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
 
         Tuple2<Label, VBox> availableBalanceBox = getBalanceBox(Res.get("mainView.balance.available"));
         availableBalanceBox.first.textProperty().bind(model.getAvailableBalance());
-        availableBalanceBox.first.setPrefWidth(112);
+        availableBalanceBox.first.setPrefWidth(ds.scaled(112));
         availableBalanceBox.first.tooltipProperty().bind(new ObjectBinding<>() {
             {
                 bind(model.getAvailableBalance());
@@ -316,28 +320,28 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
 
         HBox priceAndBalance = new HBox(marketPriceBox.second, getNavigationSeparator(), availableBalanceBox.second,
                 getNavigationSeparator(), pendingBalanceBox.second, getNavigationSeparator(), reservedBalanceBox.second);
-        priceAndBalance.setMaxHeight(41);
+        priceAndBalance.setMaxHeight(ds.scaled(41));
 
         priceAndBalance.setAlignment(Pos.CENTER);
-        priceAndBalance.setSpacing(9);
+        priceAndBalance.setSpacing(ds.scaled(9));
         priceAndBalance.getStyleClass().add("nav-price-balance");
 
         HBox navPane = new HBox(primaryNav, secondaryNav, getNavigationSpacer(),
                 priceAndBalance) {{
-            setLeftAnchor(this, 0d);
-            setRightAnchor(this, 0d);
-            setTopAnchor(this, 0d);
-            setPadding(new Insets(0, 0, 0, 0));
+            setLeftAnchor(this, ds.scaled(0));
+            setRightAnchor(this, ds.scaled(0));
+            setTopAnchor(this, ds.scaled(0));
+            setPadding(new Insets(ds.scaled(0), ds.scaled(0), ds.scaled(0), ds.scaled(0)));
             getStyleClass().add("top-navigation");
         }};
         navPane.setAlignment(Pos.CENTER);
 
         AnchorPane contentContainer = new AnchorPane() {{
             getStyleClass().add("content-pane");
-            setLeftAnchor(this, 0d);
-            setRightAnchor(this, 0d);
-            setTopAnchor(this, 57d);
-            setBottomAnchor(this, 0d);
+            setLeftAnchor(this, ds.scaled(0));
+            setRightAnchor(this, ds.scaled(0));
+            setTopAnchor(this, ds.scaled(57));
+            setBottomAnchor(this, ds.scaled(0));
         }};
 
         AnchorPane applicationContainer = new AnchorPane(navPane, contentContainer) {{
@@ -399,7 +403,7 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
     private Separator getNavigationSeparator() {
         final Separator separator = new Separator(Orientation.VERTICAL);
         HBox.setHgrow(separator, Priority.ALWAYS);
-        separator.setMaxHeight(22);
+        separator.setMaxHeight(ds.scaled(22));
         separator.setMaxWidth(Double.MAX_VALUE);
         return separator;
     }
@@ -418,7 +422,7 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         Label label = new Label(text);
         label.getStyleClass().add("nav-balance-label");
         label.maxWidthProperty().bind(balanceDisplay.widthProperty());
-        label.setPadding(new Insets(0, 0, 0, 0));
+        label.setPadding(new Insets(ds.scaled(0), ds.scaled(0), ds.scaled(0), ds.scaled(0)));
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER_LEFT);
         vBox.getChildren().addAll(balanceDisplay, label);
@@ -448,7 +452,7 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         priceComboBox.setVisibleRowCount(12);
         priceComboBox.setFocusTraversable(false);
         priceComboBox.setId("price-feed-combo");
-        priceComboBox.setPadding(new Insets(0, -4, -4, 0));
+        priceComboBox.setPadding(new Insets(ds.scaled(0), ds.scaled(-4), ds.scaled(-4), ds.scaled(0)));
         priceComboBox.setCellFactory(p -> getPriceFeedComboBoxListCell());
         ListCell<PriceFeedComboBoxItem> buttonCell = getPriceFeedComboBoxListCell();
         buttonCell.setId("price-feed-combo");
@@ -459,7 +463,7 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         updateMarketPriceLabel(marketPriceLabel);
 
         marketPriceLabel.getStyleClass().add("nav-balance-label");
-        marketPriceLabel.setPadding(new Insets(-2, 0, 4, 9));
+        marketPriceLabel.setPadding(new Insets(ds.scaled(-2), ds.scaled(0), ds.scaled(4), ds.scaled(9)));
 
         marketPriceBox.getChildren().addAll(priceComboBox, marketPriceLabel);
 
@@ -506,7 +510,7 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
     private VBox createSplashScreen() {
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
-        vBox.setSpacing(10);
+        vBox.setSpacing(ds.scaled(10));
         vBox.setId("splash");
 
         ImageView logo = new ImageView();
@@ -522,7 +526,7 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         model.getWalletServiceErrorMsg().addListener(walletServiceErrorMsgListener);
 
         xmrSyncIndicator = new JFXProgressBar();
-        xmrSyncIndicator.setPrefWidth(305);
+        xmrSyncIndicator.setPrefWidth(ds.scaled(305));
         xmrSyncIndicator.progressProperty().bind(model.getCombinedSyncProgress());
 
         ImageView xmrSyncIcon = new ImageView();
@@ -543,17 +547,17 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
 
 
         HBox blockchainSyncBox = new HBox();
-        blockchainSyncBox.setSpacing(10);
+        blockchainSyncBox.setSpacing(ds.scaled(10));
         blockchainSyncBox.setAlignment(Pos.CENTER);
-        blockchainSyncBox.setPadding(new Insets(40, 0, 0, 0));
-        blockchainSyncBox.setPrefHeight(50);
+        blockchainSyncBox.setPadding(new Insets(ds.scaled(40), ds.scaled(0), ds.scaled(0), ds.scaled(0)));
+        blockchainSyncBox.setPrefHeight(ds.scaled(50));
         blockchainSyncBox.getChildren().addAll(xmrSplashInfo, xmrSyncIcon);
 
 
         // create P2PNetworkBox
         splashP2PNetworkLabel = new AutoTooltipLabel();
         splashP2PNetworkLabel.setWrapText(true);
-        splashP2PNetworkLabel.setMaxWidth(500);//500
+        splashP2PNetworkLabel.setMaxWidth(ds.scaled(500));
         splashP2PNetworkLabel.setTextAlignment(TextAlignment.CENTER);
         splashP2PNetworkLabel.getStyleClass().add("sub-info");
         splashP2PNetworkLabel.textProperty().bind(model.getP2PNetworkInfo());
@@ -590,7 +594,7 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         splashP2PNetworkIcon.setId("image-connection-tor");
         splashP2PNetworkIcon.setVisible(false);
         splashP2PNetworkIcon.setManaged(false);
-        HBox.setMargin(splashP2PNetworkIcon, new Insets(0, 0, 5, 0));
+        HBox.setMargin(splashP2PNetworkIcon, ds.ScaledInsets(0,0,0,0));
         splashP2PNetworkIcon.setOnMouseClicked(e -> {
             torNetworkSettingsWindow.show();
         });
@@ -618,9 +622,9 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         model.getSplashP2PNetworkAnimationVisible().addListener(splashP2PNetworkVisibleListener);
 
         HBox splashP2PNetworkBox = new HBox();
-        splashP2PNetworkBox.setSpacing(10);
+        splashP2PNetworkBox.setSpacing(ds.scaled(10));
         splashP2PNetworkBox.setAlignment(Pos.CENTER);
-        splashP2PNetworkBox.setPrefHeight(40);
+        splashP2PNetworkBox.setPrefHeight(ds.scaled(40));
         splashP2PNetworkBox.getChildren().addAll(splashP2PNetworkLabel, splashP2PNetworkBusyAnimation, splashP2PNetworkIcon, showTorNetworkSettingsButton);
 
         vBox.getChildren().addAll(logo, blockchainSyncBox, xmrSyncIndicator, splashP2PNetworkBox);
@@ -648,17 +652,17 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         // line
         Separator separator = new Separator();
         separator.setId("footer-pane-line");
-        separator.setPrefHeight(1);
-        setLeftAnchor(separator, 0d);
-        setRightAnchor(separator, 0d);
-        setTopAnchor(separator, 0d);
+        separator.setPrefHeight(ds.scaled(1));
+        setLeftAnchor(separator, ds.scaled(0));
+        setRightAnchor(separator, ds.scaled(0));
+        setTopAnchor(separator, ds.scaled(0));
 
         // XMR
         Label xmrInfoLabel = new AutoTooltipLabel();
         xmrInfoLabel.setId("footer-pane");
         xmrInfoLabel.textProperty().bind(model.getXmrInfo());
-        setLeftAnchor(xmrInfoLabel, 10d);
-        setBottomAnchor(xmrInfoLabel, 7d);
+        setLeftAnchor(xmrInfoLabel, ds.scaled(10));
+        setBottomAnchor(xmrInfoLabel, ds.scaled(7));
 
         // temporarily disabled due to high CPU usage (per issue #4649)
         //ProgressBar blockchainSyncIndicator = new JFXProgressBar(-1);
@@ -708,13 +712,13 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
             }
         });
         HBox versionBox = new HBox();
-        versionBox.setSpacing(10);
+        versionBox.setSpacing(ds.scaled(10));
         versionBox.setAlignment(Pos.CENTER);
         versionBox.setAlignment(Pos.BASELINE_CENTER);
         versionBox.getChildren().addAll(versionLabel); //blockchainSyncIndicator removed per issue #4649
-        setLeftAnchor(versionBox, 10d);
-        setRightAnchor(versionBox, 10d);
-        setBottomAnchor(versionBox, 7d);
+        setLeftAnchor(versionBox, ds.scaled(10));
+        setRightAnchor(versionBox, ds.scaled(10));
+        setBottomAnchor(versionBox, ds.scaled(7));
 
         // P2P Network
         Label p2PNetworkLabel = new AutoTooltipLabel();
@@ -722,8 +726,8 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         p2PNetworkLabel.textProperty().bind(model.getP2PNetworkInfo());
 
         ImageView p2PNetworkIcon = new ImageView();
-        setRightAnchor(p2PNetworkIcon, 10d);
-        setBottomAnchor(p2PNetworkIcon, 5d);
+        setRightAnchor(p2PNetworkIcon, ds.scaled(10));
+        setBottomAnchor(p2PNetworkIcon, ds.scaled(5));
         p2PNetworkIcon.setOpacity(0.4);
         p2PNetworkIcon.idProperty().bind(model.getP2PNetworkIconId());
         p2PNetworkLabel.idProperty().bind(model.getP2pNetworkLabelId());
@@ -740,8 +744,8 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         });
 
         ImageView p2PNetworkStatusIcon = new ImageView();
-        setRightAnchor(p2PNetworkStatusIcon, 30d);
-        setBottomAnchor(p2PNetworkStatusIcon, 7d);
+        setRightAnchor(p2PNetworkStatusIcon, ds.scaled(30));
+        setBottomAnchor(p2PNetworkStatusIcon, ds.scaled(7));
         Tooltip p2pNetworkStatusToolTip = new Tooltip();
         Tooltip.install(p2PNetworkStatusIcon, p2pNetworkStatusToolTip);
         p2PNetworkStatusIcon.setOnMouseEntered(e -> p2pNetworkStatusToolTip.setText(model.getP2pConnectionSummary()));
@@ -778,19 +782,19 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         });
 
         p2pNetworkProgressBar = new JFXProgressBar(-1);
-        p2pNetworkProgressBar.setMaxHeight(2);
+        p2pNetworkProgressBar.setMaxHeight(ds.scaled(2));
         p2pNetworkProgressBar.prefWidthProperty().bind(p2PNetworkLabel.widthProperty());
 
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER_RIGHT);
         vBox.getChildren().addAll(p2PNetworkLabel, p2pNetworkProgressBar);
-        setRightAnchor(vBox, 53d);
-        setBottomAnchor(vBox, 5d);
+        setRightAnchor(vBox, ds.scaled(53));
+        setBottomAnchor(vBox, ds.scaled(5));
 
         return new AnchorPane(separator, xmrInfoLabel, versionBox, vBox, p2PNetworkStatusIcon, p2PNetworkIcon) {{
             setId("footer-pane");
-            setMinHeight(30);
-            setMaxHeight(30);
+            setMinHeight(ds.scaled(30));
+            setMaxHeight(ds.scaled(30));
         }};
     }
 
@@ -805,8 +809,8 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         });
 
         buttonWithBadge.setPosition(Pos.TOP_RIGHT);
-        buttonWithBadge.setMinHeight(34);
-        buttonWithBadge.setMaxHeight(34);
+        buttonWithBadge.setMinHeight(ds.scaled(34));
+        buttonWithBadge.setMaxHeight(ds.scaled(34));
     }
 
     private class NavButton extends AutoTooltipToggleButton {

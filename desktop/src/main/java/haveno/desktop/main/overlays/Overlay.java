@@ -28,6 +28,7 @@ import haveno.core.locale.LanguageUtil;
 import haveno.core.locale.Res;
 import haveno.core.user.DontShowAgainLookup;
 import haveno.desktop.app.HavenoApp;
+import haveno.desktop.DynamicSizeListener;
 import haveno.desktop.components.AutoTooltipButton;
 import haveno.desktop.components.AutoTooltipCheckBox;
 import haveno.desktop.components.AutoTooltipLabel;
@@ -181,6 +182,7 @@ public abstract class Overlay<T extends Overlay<T>> {
 
     protected int maxChar = 2200;
 
+    private DynamicSizeListener ds = new DynamicSizeListener();
     private T cast() {
         //noinspection unchecked
         return (T) this;
@@ -486,10 +488,10 @@ public abstract class Overlay<T extends Overlay<T>> {
 
     protected void createGridPane() {
         gridPane = new GridPane();
-        gridPane.setHgap(5);
-        gridPane.setVgap(5);
-        gridPane.setPadding(new Insets(64, 64, 64, 64));
-        gridPane.setPrefWidth(width);
+        gridPane.setHgap(ds.scaled(5));
+        gridPane.setVgap(ds.scaled(5));
+        gridPane.setPadding(ds.ScaledInsets(64, 64, 64, 64));
+        gridPane.setPrefWidth(ds.scaled(width));
 
         ColumnConstraints columnConstraints1 = new ColumnConstraints();
         columnConstraints1.setHalignment(HPos.RIGHT);
@@ -791,12 +793,12 @@ public abstract class Overlay<T extends Overlay<T>> {
             ++rowIndex;
 
             HBox hBox = new HBox();
-            hBox.setSpacing(7);
+            hBox.setSpacing(ds.scaled(7));
             headLineLabel = new AutoTooltipLabel(headLine);
             headlineIcon = new Label();
             headlineIcon.setManaged(false);
             headlineIcon.setVisible(false);
-            headlineIcon.setPadding(new Insets(3));
+            headlineIcon.setPadding(new Insets(ds.scaled(3)));
             headLineLabel.setMouseTransparent(true);
 
             if (headlineStyle != null)
@@ -830,7 +832,7 @@ public abstract class Overlay<T extends Overlay<T>> {
 
             GridPane.setHalignment(messageRegion, HPos.LEFT);
             GridPane.setHgrow(messageRegion, Priority.ALWAYS);
-            GridPane.setMargin(messageRegion, new Insets(3, 0, 0, 0));
+            GridPane.setMargin(messageRegion, ds.ScaledInsets(3, 0, 0, 0));
             GridPane.setRowIndex(messageRegion, ++rowIndex);
             GridPane.setColumnIndex(messageRegion, 0);
             GridPane.setColumnSpan(messageRegion, 2);
@@ -846,7 +848,7 @@ public abstract class Overlay<T extends Overlay<T>> {
             VBox footerBox = new VBox();
             GridPane.setRowIndex(footerBox, ++rowIndex);
             GridPane.setColumnSpan(footerBox, 2);
-            GridPane.setMargin(footerBox, new Insets(buttonDistance, 0, 0, 0));
+            GridPane.setMargin(footerBox, ds.ScaledInsets(buttonDistance, 0, 0, 0));
             gridPane.getChildren().add(footerBox);
             for (int i = 0; i < messageHyperlinks.size(); i++) {
                 Label label = new Label(String.format("[%d]", i + 1));
@@ -861,7 +863,7 @@ public abstract class Overlay<T extends Overlay<T>> {
         messageLabel.setText(Res.get("popup.reportError", truncatedMessage));
 
         Button logButton = new AutoTooltipButton(Res.get("popup.reportError.log"));
-        GridPane.setMargin(logButton, new Insets(20, 0, 0, 0));
+        GridPane.setMargin(logButton, ds.ScaledInsets(20, 0, 0, 0));
         GridPane.setHalignment(logButton, HPos.LEFT);
         GridPane.setRowIndex(logButton, ++rowIndex);
         gridPane.getChildren().add(logButton);
@@ -921,7 +923,7 @@ public abstract class Overlay<T extends Overlay<T>> {
             closeButton = new AutoTooltipButton(closeButtonText == null ? Res.get("shared.close") : closeButtonText);
             closeButton.getStyleClass().add("compact-button");
             closeButton.setOnAction(event -> doClose());
-            closeButton.setMinWidth(70);
+            closeButton.setMinWidth(ds.scaled(70));
             HBox.setHgrow(closeButton, Priority.SOMETIMES);
         }
 
@@ -937,7 +939,7 @@ public abstract class Overlay<T extends Overlay<T>> {
         GridPane.setHalignment(buttonBox, buttonAlignment);
         GridPane.setRowIndex(buttonBox, ++rowIndex);
         GridPane.setColumnSpan(buttonBox, 2);
-        GridPane.setMargin(buttonBox, new Insets(buttonDistance, 0, 0, 0));
+        GridPane.setMargin(buttonBox, ds.ScaledInsets(buttonDistance, 0, 0, 0));
         gridPane.getChildren().add(buttonBox);
 
         if (actionHandlerOptional.isPresent() || actionButtonText != null) {
@@ -961,7 +963,7 @@ public abstract class Overlay<T extends Overlay<T>> {
                 });
             }
 
-            buttonBox.setSpacing(10);
+            buttonBox.setSpacing(ds.scaled(10));
 
             buttonBox.setAlignment(Pos.CENTER);
 

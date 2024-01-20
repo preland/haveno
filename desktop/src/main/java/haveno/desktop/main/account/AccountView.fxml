@@ -22,7 +22,6 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.layout.AnchorPane?>
 <JFXTabPane fx:id="root" fx:controller="haveno.desktop.main.account.AccountView"
-            prefHeight="630.0" prefWidth="1000.0"
             AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
             AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0"
             xmlns:fx="http://javafx.com/fxml">
