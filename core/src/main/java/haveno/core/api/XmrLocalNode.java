@@ -36,7 +36,6 @@ import monero.common.MoneroConnectionManager;
 import monero.common.MoneroUtils;
 import monero.daemon.MoneroDaemonRpc;
 
-
 /**
  * Start and stop or connect to a local Monero node.
  */
@@ -48,7 +47,10 @@ public class XmrLocalNode {
     public static final long REFRESH_PERIOD_LOCAL_MS = 5000; // refresh period for local node
     public static final String MONEROD_NAME = Utilities.isWindows() ? "monerod.exe" : "monerod";
     public static final String MONEROD_PATH = XmrWalletService.MONERO_BINS_DIR + File.separator + MONEROD_NAME;
-    private static final String MONEROD_DATADIR =  Config.baseCurrencyNetwork() == BaseCurrencyNetwork.XMR_LOCAL ? XmrWalletService.MONERO_BINS_DIR + File.separator + Config.baseCurrencyNetwork().toString().toLowerCase() + File.separator + "node1" : null; // use default directory unless local
+    private static final String MONEROD_DATADIR = Config.baseCurrencyNetwork() == BaseCurrencyNetwork.XMR_LOCAL
+            ? XmrWalletService.MONERO_BINS_DIR + File.separator + Config.baseCurrencyNetwork().toString().toLowerCase()
+                    + File.separator + "node1"
+            : null; // use default directory unless local
 
     // instance fields
     private MoneroDaemonRpc daemon;
@@ -65,7 +67,8 @@ public class XmrLocalNode {
         MONEROD_ARGS.add("--hide-my-port");
         MONEROD_ARGS.add("--p2p-bind-ip");
         MONEROD_ARGS.add(HavenoUtils.LOOPBACK_HOST);
-        if (!Config.baseCurrencyNetwork().isMainnet()) MONEROD_ARGS.add("--" + Config.baseCurrencyNetwork().getNetwork().toLowerCase());
+        if (!Config.baseCurrencyNetwork().isMainnet())
+            MONEROD_ARGS.add("--" + Config.baseCurrencyNetwork().getNetwork().toLowerCase());
     }
 
     @Inject
@@ -78,7 +81,8 @@ public class XmrLocalNode {
         this.connectionManager = new MoneroConnectionManager().setConnection(daemon.getRpcConnection());
         this.connectionManager.setTimeout(REFRESH_PERIOD_LOCAL_MS);
         this.connectionManager.addListener((connection) -> {
-            for (var listener : listeners) listener.onConnectionChanged(connection); // notify of connection changes
+            for (var listener : listeners)
+                listener.onConnectionChanged(connection); // notify of connection changes
         });
         this.connectionManager.startPolling(REFRESH_PERIOD_LOCAL_MS);
     }
@@ -88,8 +92,10 @@ public class XmrLocalNode {
     }
 
     /**
-     * Returns whether Haveno should use a local Monero node, meaning that a node was
-     * detected and conditions under which it should be ignored have not been met. If
+     * Returns whether Haveno should use a local Monero node, meaning that a node
+     * was
+     * detected and conditions under which it should be ignored have not been met.
+     * If
      * the local node should be ignored, a call to this method will not trigger an
      * unnecessary detection attempt.
      */
@@ -98,7 +104,8 @@ public class XmrLocalNode {
     }
 
     /**
-     * Returns whether Haveno should ignore a local Monero node even if it is usable.
+     * Returns whether Haveno should ignore a local Monero node even if it is
+     * usable.
      */
     public boolean shouldBeIgnored() {
         return config.ignoreLocalXmrNode || preferences.getMoneroNodesOption() == XmrNodes.MoneroNodesOption.CUSTOM;
@@ -120,7 +127,8 @@ public class XmrLocalNode {
     }
 
     public boolean equalsUri(String uri) {
-        return HavenoUtils.isLocalHost(uri) && MoneroUtils.parseUri(uri).getPort() == HavenoUtils.getDefaultMoneroPort();
+        return HavenoUtils.isLocalHost(uri)
+                && MoneroUtils.parseUri(uri).getPort() == HavenoUtils.getDefaultMoneroPort();
     }
 
     /**
@@ -160,7 +168,8 @@ public class XmrLocalNode {
      * Persist the settings to preferences if the node started successfully.
      */
     public void startNode(XmrNodeSettings settings) throws IOException {
-        if (isDetected()) throw new IllegalStateException("Local Monero node already online");
+        if (isDetected())
+            throw new IllegalStateException("Local Monero node already online");
 
         log.info("Starting local Monero node: " + settings);
 
@@ -170,13 +179,17 @@ public class XmrLocalNode {
         if (dataDir == null || dataDir.isEmpty()) {
             dataDir = MONEROD_DATADIR;
         }
-        if (dataDir != null) args.add("--data-dir=" + dataDir);
+        if (dataDir != null)
+            args.add("--data-dir=" + dataDir);
 
         var bootstrapUrl = settings.getBootstrapUrl();
         if (bootstrapUrl != null && !bootstrapUrl.isEmpty()) {
             args.add("--bootstrap-daemon-address=" + bootstrapUrl);
         }
-
+        var usernameAndPassword = settings.getUsernamePassword();
+        if (usernameAndPassword != null && !usernameAndPassword.isEmpty()) {
+            args.add("--bootstrap-daemon-login=" + usernameAndPassword);
+        }
         var flags = settings.getStartupFlags();
         if (flags != null) {
             args.addAll(flags);
@@ -184,7 +197,8 @@ public class XmrLocalNode {
 
         daemon = new MoneroDaemonRpc(args); // start daemon as process and re-assign client
         preferences.setXmrNodeSettings(settings);
-        for (var listener : listeners) listener.onNodeStarted(daemon);
+        for (var listener : listeners)
+            listener.onNodeStarted(daemon);
     }
 
     /**
@@ -192,9 +206,23 @@ public class XmrLocalNode {
      * Does not remove the last XmrNodeSettings.
      */
     public void stopNode() {
-        if (!isDetected()) throw new IllegalStateException("Local Monero node is not running");
-        if (daemon.getProcess() == null || !daemon.getProcess().isAlive()) throw new IllegalStateException("Cannot stop local Monero node because we don't own its process"); // TODO (woodser): remove isAlive() check after monero-java 0.5.4 which nullifies internal process
+        if (!isDetected())
+            throw new IllegalStateException("Local Monero node is not running");
+        if (daemon.getProcess() == null || !daemon.getProcess().isAlive())
+            throw new IllegalStateException("Cannot stop local Monero node because we don't own its process"); // TODO
+                                                                                                               // (woodser):
+                                                                                                               // remove
+                                                                                                               // isAlive()
+                                                                                                               // check
+                                                                                                               // after
+                                                                                                               // monero-java
+                                                                                                               // 0.5.4
+                                                                                                               // which
+                                                                                                               // nullifies
+                                                                                                               // internal
+                                                                                                               // process
         daemon.stopProcess();
-        for (var listener : listeners) listener.onNodeStopped();
+        for (var listener : listeners)
+            listener.onNodeStopped();
     }
 }
